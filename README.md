@@ -1,0 +1,1 @@
+# notion-stock-prices-sync
