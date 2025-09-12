@@ -2,7 +2,7 @@ name: Sync Prices to Notion
 
 on:
   schedule:
-    - cron: "23 30 * * *"   # every hour
+    - cron: "30 23 * * *"   # every day at 5am IST
   workflow_dispatch:       # allow manual trigger from Actions tab
 
 jobs:
