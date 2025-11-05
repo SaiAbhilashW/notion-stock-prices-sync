@@ -6,18 +6,24 @@ from notion_client import Client
 
 # --- CONFIG ---
 NOTION_TOKEN = os.environ["NOTION_TOKEN"]  # your Notion integration token
-DATABASE_ID = os.environ["DATABASE_ID"]    # your Notion database ID
-
+DATASOURCE_ID = os.environ["DATASOURCE_ID"]  # your Notion database ID
+NOTION_MIGRATION_VERSION = "2025-09-03"
 
 # --- INIT ---
 notion = Client(auth=NOTION_TOKEN)
 
+url = f"https://api.notion.com/v1/data_sources/{DATASOURCE_ID}/query"
+headers = {
+    "Authorization": f"Bearer {NOTION_TOKEN}",
+    "Notion-Version": "2025-09-03",
+    "Content-Type": "application/json",
+}
 
-# --- Step 1. Fetch all tickers from Notion ---
-query = notion.databases.query(database_id=DATABASE_ID)
+query_resp = requests.post(url, headers=headers, json={})
+query_resp_json = query.json()
 
 tickers = {}
-for page in query["results"]:
+for page in query_resp_json["results"]:
     props = page["properties"]
 
     ticker_text = None

@@ -32,3 +32,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+# Changelog:
+
+2025-10-05: Updated script to use REST calls instead of SDK due to breaking changes in notion outlined in - https://developers.notion.com/docs/upgrade-guide-2025-09-03
