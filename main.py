@@ -20,7 +20,7 @@ headers = {
 }
 
 query_resp = requests.post(url, headers=headers, json={})
-query_resp_json = query.json()
+query_resp_json = query_resp.json()
 
 tickers = {}
 for page in query_resp_json["results"]:
